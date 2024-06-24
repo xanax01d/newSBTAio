@@ -1,5 +1,5 @@
 import asyncio
-import logging
+#import logging
 from aiogram import Bot, Dispatcher,F
 from configs.cfg import tbt
 from handlers import basic
@@ -7,8 +7,8 @@ from handlers import callback
 from utils.callback import UserInfo
 from handlers.callback import SelectCourse, SelectGroup, SelectDay, SendSchedule
 from utils.storage import redisStorage
-#включаем вывод логов
-logging.basicConfig(level=logging.DEBUG)
+
+#logging.basicConfig(level=logging.DEBUG)
 
 async def main():
     #создаем переменную бота
