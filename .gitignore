@@ -1,0 +1,5 @@
+*.pdf
+*.json
+*.xlsx
+*.db
+/comfigs/cfg.py
