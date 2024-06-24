@@ -2,4 +2,4 @@
 *.json
 *.xlsx
 *.db
-/comfigs/cfg.py
+/configs/cfg.py
