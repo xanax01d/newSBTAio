@@ -2,4 +2,7 @@
 *.json
 *.xlsx
 *.db
+*.exe
+*.dll
+*.xls
 /configs/cfg.py
