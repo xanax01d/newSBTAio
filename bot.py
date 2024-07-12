@@ -9,7 +9,7 @@ from handlers.callback import SelectCourse, SelectGroup, SelectDay, SendSchedule
 from utils.storage import redisStorage
 
 #logging.basicConfig(level=logging.DEBUG)
-#testing git,srry
+
 async def main():
     #создаем переменную бота
     bot = Bot(token=tbt,parse_mode="HTML")
