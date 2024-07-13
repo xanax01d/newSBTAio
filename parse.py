@@ -83,6 +83,7 @@ def parseSchedule():
 					scheduleString = 'Пар нет.'
 				saveTable(group,day,scheduleString)
 				sleep(5)
+
 def main():
 	clearDatabase()
 	createTables()

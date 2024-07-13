@@ -70,7 +70,3 @@ async def SendSchedule(call: CallbackQuery, callback_data: UserInfo, state: FSMC
                                                             day = callback_data.day))
     await state.set_state(States.day)
     await call.answer()
-
-#@router.callback_query(UserInfo.filter(F.level == 5))
-#async def AgainSendSchedule(call: CallbackQuery,callback_data: UserInfo,state:FSMContext):
-#    with suppress(TelegramBadRequest)
