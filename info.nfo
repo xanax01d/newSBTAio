@@ -24,7 +24,7 @@ ENG:
 
 Schedule bot & updater for Belarusian State Academy of Communications,based on SQLite3,aiogram,GSpread
 Programming language: Python
-Dependencies: gspread, aiogram 3.6, numpy, aiogram-sqlite-storage
+Dependencies: gspread, aiogram, numpy, redis
 
 How to install dependencies: 
 pip3 install -r requerements.txt
@@ -40,7 +40,7 @@ RU:
 
 Бот - расписание и средство обновления расписания для Белорусской государственной академии связи
 Язык программирования: Python
-Зависимости: gspread, aiogram 3.6, numpy, aiogram-sqlite-storage
+Зависимости: gspread, aiogram, numpy, redis
 
 Как установить зависимости:
 pip3 install -r requerements.txt
