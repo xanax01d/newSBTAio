@@ -2,22 +2,23 @@ import urllib
 import requests as r
 from bs4 import BeautifulSoup as bs
 import time
-import fitz  # PyMuPDF
-import openpyxl
-from openpyxl.utils import get_column_letter
+from spire.pdf.common import *
+from spire.pdf import *
+
 
 def download_file(url):
     local_filename = url.split('/')[-1]
     urllib.request.urlretrieve(url, local_filename)
     return local_filename
-def parsePDF(pdf):
-    doc = fitz.open(pdf) # open a document
-    out = open(f"{pdf}.txt", "wb") # create a text output
-    for page in doc: # iterate the document pages
-        text = page.get_text().encode("utf8") # get plain text (is in UTF-8)
-        out.write(text) # write text of page
-        out.write(bytes((12,))) # write page delimiter (form feed 0x0C)
-    out.close()
+
+def parsePDF(file):
+    pdf = PdfDocument()
+    pdf.LoadFromFile(file)
+    convertOptions = XlsxLineLayoutOptions(True, True, False, True, False)
+    pdf.ConvertOptions.SetPdfToXlsxOptions(convertOptions)
+    pdf.SaveToFile(f"{file}.xlsx", FileFormat.XLSX)
+    pdf.Close()
+    return(True)
 
 def main():
     print('Stage 1: Downloading PDF files')
@@ -39,7 +40,7 @@ def main():
     print('Stage 2: Converting PDF files')    
     for file_name in downloadedFiles:
         print(f'Converting {file_name}...')
-        parsePDF(file_name)
-        
+        parsePDF(file_name)   
+
 if __name__ == "__main__":
     main()
