@@ -31,7 +31,7 @@ async def main():
     #dp = Dispatcher()
     #include routers
     dp.include_routers(basic.router,callback.router)
-    #register callback query
+    #register callback query by levels of menu
     dp.callback_query.register(SelectCourse,UserInfo.filter(F.level == 1))
     dp.callback_query.register(SelectGroup,UserInfo.filter(F.level == 2))
     dp.callback_query.register(SelectDay,UserInfo.filter(F.level == 3))
