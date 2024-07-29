@@ -6,5 +6,6 @@
 *.dll
 *.xls
 *.pyc
+log.txt
 /parse/*.txt
 /configs/cfg.py

@@ -2,6 +2,7 @@ import sqlite3
 from configs.dictionaries import groupsToTables
 from configs.admins import admin_ids
 from configs.forParse import days
+from datetime import datetime
 class BotDB:
     #подключаем базу и создаем нужные базы,если их нет 
     def __init__(self,base):
@@ -108,3 +109,21 @@ class BotDB:
             banned INTEGER NOT NULL
        )""")
         self.con.commit()
+
+    def add_report(self,user_id, username, group, day):
+        self.cur.execute("INSERT INTO reports VALUES(?,?,?,?,?)",
+                         (user_id,username,group,day,(datetime.now().date())))
+        return self.con.commit()
+    
+    def add_captcha_info(self, user_id, captcha):
+        self.cur.execute("UPDATE captcha_table SET captcha = ? WHERE id = ?", (captcha, user_id))
+        if self.cur.rowcount == 0:  # Если обновление не произошло, значит, записи не было
+            self.cur.execute("INSERT INTO captcha_table (id, captcha) VALUES (?, ?)",(user_id, captcha))
+        return self.con.commit()
+    
+    def get_captcha(self,user_id):
+        self.cur.execute("SELECT captcha FROM captcha_table WHERE id = ?",(user_id,))
+        data = self.cur.fetchone()
+        if data is None:
+            return False
+        return data[0]

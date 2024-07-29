@@ -5,3 +5,5 @@ class States(StatesGroup):
     course = State()
     group = State()
     day = State()
+    report_captcha = State()
+    report_send = State()
