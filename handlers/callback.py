@@ -17,11 +17,10 @@ router = Router()
 async def SelectStage(call:CallbackQuery,callback_data:UserInfo,state:FSMContext):
     await call.message.edit_media(media = InputMediaPhoto(
         media = FSInputFile(
-            path= pictures_path[0],filename='First_step.png'))
+            path= pictures_path[0],filename='First_step.png'),
+            caption='<b>Выберите ступень образования:</b>',),
+            reply_markup=selectStage()
     )
-    await call.message.edit_text(text= "<b>Выберите ступень образования:</b> ",
-                                    parse_mode="HTML",
-                                    reply_markup=selectStage())
     BotDB.add_user_info(call.from_user.id,
                         call.from_user.username,
                         call.from_user.first_name,
