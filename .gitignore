@@ -9,3 +9,4 @@
 log.txt
 /parse/*.txt
 /configs/cfg.py
+/base/bot_base.db
