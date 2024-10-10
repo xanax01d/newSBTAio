@@ -4,7 +4,9 @@ from configs.admins import admin_ids
 from configs.forParse import days
 from datetime import datetime
 class BotDB:
-    #подключаем базу и создаем нужные базы,если их нет 
+    """
+
+    """
     def __init__(self,base):
         self.con = sqlite3.connect(base)
         self.cur = self.con.cursor() 
@@ -31,9 +33,6 @@ class BotDB:
     def add_user_stage(self,userId,userStage):
         self.cur.execute("UPDATE users_group SET user_stage = (?) WHERE user_id = (?)",(userStage,userId,))
         return self.con.commit()
-    def get_user_stage(self,userId):
-        self.cur.execute('SELECT user_stage FROM users_group WHERE user_id = (?)',(userId,))
-        return self.cur.fetchall()[0][0]
     def add_user_course(self,userId,userCourse):
         self.cur.execute("UPDATE users_group SET user_course = (?) WHERE user_id = (?)",(userCourse,userId,))
         return self.con.commit()
@@ -50,9 +49,11 @@ class BotDB:
         return self.cur.fetchall()[0][0]
     def close(self):
         self.con.close()
+    """
     def add_user_bans(self,user_id,user_ban_status,user_fn):
         self.cur.execute("INSERT OR REPLACE INTO user_status VALUES (?,?,?)",(user_id,user_fn,user_ban_status,))
         return self.con.commit()
+    """
     def check_ban(self,user_id):
         self.cur.execute("SELECT banned FROM user_status WHERE user_id = ?",(user_id,))
         return self.cur.fetchone()

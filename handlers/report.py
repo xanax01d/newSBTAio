@@ -35,7 +35,7 @@ async def ReportCaptcha(call: CallbackQuery, callback_data: UserInfo, state: FSM
 async def sendReport(call: CallbackQuery,callback_data: UserInfo,bot:Bot, state = FSMContext):
     if BotDB.get_captcha(user_id=call.from_user.id) == callback_data.captcha:
         BotDB.add_report(user_id= call.from_user.id, username= call.from_user.username,group= callback_data.group,day = days[callback_data.day])
-        await bot.send_message(chat_id = '-1002217232410', text = (f"Отчет (неверное расписание):\nОт кого: @{call.from_user.username}\nКурс: {callback_data.course}\nГруппа: {callback_data.group}\nДень: {days[callback_data.day]}"))
+        await bot.send_message(chat_id = '-1002217232410', text = (f"Отчет (неверное расписание):\nОт кого: @{call.from_user.username} <i><b>({call.from_user.first_name})</b></i>\nКурс: {callback_data.course}\nГруппа: {callback_data.group}\nДень: {days[callback_data.day]}"))
         path = pictures_path[6]
     else:
         path = pictures_path[7]

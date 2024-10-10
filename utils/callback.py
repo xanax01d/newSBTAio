@@ -1,7 +1,7 @@
 from aiogram.filters.callback_data import CallbackData
 
 
-class UserInfo(CallbackData, prefix='UserInfo', sep='|'):
+class UserInfo(CallbackData, prefix='UserInfo', sep='_'):
     """
     Class for collecting information about user selection in bot
     """
