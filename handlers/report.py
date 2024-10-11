@@ -1,11 +1,9 @@
 from aiogram import Router, F,Bot
 from handlers.States import States
 from aiogram.fsm.context import FSMContext
-from aiogram.types import CallbackQuery, FSInputFile,InputMediaPhoto, Message
+from aiogram.types import CallbackQuery, FSInputFile,InputMediaPhoto
 from utils.callback import UserInfo
 from base.base_conn import BotDB
-from contextlib import suppress
-from aiogram.exceptions import TelegramBadRequest
 from keyboards.report import report_keyboard,exit_keyboard
 from utils.captcha_generator.generator import selectRandomFruit
 from configs.pictures import pictures_path,days
