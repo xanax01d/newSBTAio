@@ -29,7 +29,6 @@ class BotDB:
                    user_fn TEXT,
                    banned INTEGER NOT NULL
                )""")
-
         self.cur.execute("""CREATE TABLE IF NOT EXISTS users_group(
                    user_id INTEGER PRIMARY KEY NOT NULL,
                    user_stage TEXT,
@@ -42,7 +41,7 @@ class BotDB:
         self.cur.execute("""CREATE TABLE IF NOT EXISTS reports(
                 id INTEGER PRIMARY KEY NOT NULL,
                 username TEXT,
-                group TEXT,
+                "group" TEXT,
                 day TEXT,
                 date TEXT)""")
         self.con.commit()
@@ -156,7 +155,7 @@ class BotDB:
     
     def add_captcha_info(self, user_id, captcha):
         self.cur.execute("UPDATE captcha_table SET captcha = ? WHERE id = ?", (captcha, user_id))
-        if self.cur.rowcount == 0:  # Если обновление не произошло, значит, записи не было
+        if self.cur.rowcount == 0: 
             self.cur.execute("INSERT INTO captcha_table (id, captcha) VALUES (?, ?)",(user_id, captcha))
         return self.con.commit()
     

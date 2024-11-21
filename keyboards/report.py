@@ -4,16 +4,16 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 from utils.callback import UserInfo
 from configs.captcha import smiles_callbacks
 
-def report_keyboard(stage,course,group,day):
+def report_keyboard(stage:str,course:str,group:str,day:int):
     """
     Function, used to create keyboard on report state
     Requires:
-        - stage of User's education
-        - course of User
-        - group, where user is study
-        - day
+        stage:str - stage of User's education
+        course:str - course of User
+        group:str - group, where user is study
+        day:int - day
     Returns:
-        - Keyboard with buttons for captcha
+        InlineKeyboardMarkup - Keyboard markup with buttons for captcha
     """
     keys = list(smiles_callbacks.keys())
     random.shuffle(keys)
@@ -42,12 +42,12 @@ def exit_keyboard(stage,course,group,day):
     """
     Function, used to create an exit button after captcha
     Requires:
-        - stage of User's education
-        - course of User
-        - group, where user is study
-        - day
+        stage:str - stage of User's education
+        course:str - course of User
+        group:str - group, where user is study
+        day:int - day
     Returns:
-        - Keyboard with button "Назад"
+        InLineKeyboardMarkup- Keyboard markup with button "Назад" ("Back")
     """
     keyboard_builder = InlineKeyboardBuilder()
     keyboard_builder.button(text = 'Назад',

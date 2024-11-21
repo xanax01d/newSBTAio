@@ -7,6 +7,13 @@ from configs.groups import groupList1v, groupList2v, groupList3v, groupList4v, g
 from configs.forParse import days
 
 def selectStage():
+    """
+    Function, used to create a markup of the keyboard, that appears when user write /start in chat with bot.
+        Requires:
+            Nothing.
+        Returns:
+            InlineKeyboardMarkup - markup of the keyboard.
+    """
     keyboard_builder = InlineKeyboardBuilder()
     for stage in levels:
         keyboard_builder.button(text=stage, callback_data=UserInfo(stage=stage,
@@ -16,11 +23,18 @@ def selectStage():
                                                                    level=1,
                                                                    captcha=None))
     keyboard_builder.button(text='Developer', url='tg://user?id=5504351206')
-    keyboard_builder.adjust(2, 1);
+    keyboard_builder.adjust(2, 1)
     return keyboard_builder.as_markup()
 
 
 def selectCourse(stage: str):
+    """
+    Function, that creates a markup of keyboard, when user selected the stage.
+        Requires:
+            stage:str - stage of education, that user selected.
+        Returns:
+            InlineKeyboardMarkup - markup of the keyboard.
+    """
     keyboard_builder = InlineKeyboardBuilder()
     for course in courses:
         keyboard_builder.button(text=course, callback_data=UserInfo(stage=stage,
@@ -35,11 +49,19 @@ def selectCourse(stage: str):
                                                                  day=None,
                                                                  level=0,
                                                                  captcha=None))
-    keyboard_builder.adjust(4,1);
+    keyboard_builder.adjust(4,1)
     return keyboard_builder.as_markup()
 
 
 def selectGroup(stage: str, course: str):
+    """
+    Function, that creates a markup of keyboard, when user selected the course.
+        Requires:
+            stage:str - stage of education, that user selected;
+            course:str - course of education, that user selected.
+        Returns:
+            InlineKeyboardMarkup - markup of the keyboard.
+    """
     keyboard_builder = InlineKeyboardBuilder()
     if stage == 'ВО':
         groupList = {
@@ -68,11 +90,20 @@ def selectGroup(stage: str, course: str):
                                                                  day=None,
                                                                  level=1,
                                                                  captcha=None))
-    keyboard_builder.adjust(4);
+    keyboard_builder.adjust(4)
     return keyboard_builder.as_markup()
 
 
-def selectDay(stage, course, group):
+def selectDay(stage:str, course:str, group:str):
+    """
+    Function, that creates a markup of keyboard, when user selected the group.
+        Requires:
+            stage:str - stage of education, that user selected;
+            course:str - course of education, that user selected;
+            group:str - group, that user selected.
+        Returns:
+            InlineKeyboardMarkup - markup of the keyboard.
+    """
     keyboard_builder = InlineKeyboardBuilder()
     for day in days:
         keyboard_builder.button(text=day, callback_data=UserInfo(stage=stage,
@@ -91,9 +122,18 @@ def selectDay(stage, course, group):
     return keyboard_builder.as_markup()
 
 
-def selectDayNumeric(stage, course, group,day):
+def selectDayNumeric(stage:str, course:str, group:str, day:int):
+    """
+    Function, that creates a markup of keyboard, when user selected the day.
+        Requires:
+            stage:str - stage of education, that user selected;
+            course:str - course of education, that user selected;
+            group:str - group, that user selected.
+            day:int - number of the day, that user selected (0-6)
+        Returns:
+            markup:InlineKeyboardMarkup - markup of the keyboard.
+    """
     keyboard_builder = InlineKeyboardBuilder()
-    #buttons
     keyboard_builder.button(text='<<-', callback_data=UserInfo(stage=stage,
                                                                  course=course,
                                                                  group=group,
@@ -138,14 +178,11 @@ def selectDayNumeric(stage, course, group,day):
                                                                  captcha=None))
     keyboard_builder.adjust(5,1,1)
     markup = keyboard_builder.as_markup()
-    #check day
     if day == 0:
-        #print('бимбим') #sonymanetov was here
         for i in range(2):
             markup.inline_keyboard[0].pop(0)
         keyboard_builder.adjust(3,1,1)
     elif day == (len(days)-1):
-        #print('бамбам') #sonymanetov was here
         for i in range(2):
             markup.inline_keyboard[0].pop(3)
         keyboard_builder.adjust(3,1,1)
