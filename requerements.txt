@@ -1,7 +1,0 @@
-aiogram
-gspread
-aiogram-sqlite-storage
-redis
-spire.pdf
-bs4
-requests
