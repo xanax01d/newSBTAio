@@ -1,12 +1,27 @@
-*.pdf
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+
+# Environment & Secrets
+.env
 *.json
+
+# Local artifacts & logs
+logs/
+*.log
+*.pdf
 *.xlsx
-*.db
-*.exe
-*.dll
 *.xls
-*.pyc
-log.txt
-/parse/*.txt
-/configs/cfg.py
-/base/bot_base.db
+*.db
+.pytest_cache/
+.ruff_cache/
+
+# IDE
+.idea/
+.vscode/
