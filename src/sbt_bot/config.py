@@ -22,7 +22,9 @@ class Settings(BaseSettings):
     redis_url: str = "redis://localhost:6379/0"
 
     bsac_vo_url: str = "http://bsac.by/tasks/vo/do"
+    bsac_vo_zo_url: str = "http://bsac.by/tasks/vo/zo"
     bsac_sso_url: str = "http://bsac.by/tasks/sso/do"
+    bsac_sso_zo_url: str = "http://bsac.by/tasks/sso/zo"
     parse_interval_minutes: Annotated[int, Field(ge=5)] = 180
     timezone: str = "Europe/Minsk"
 

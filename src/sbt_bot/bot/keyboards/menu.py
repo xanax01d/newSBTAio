@@ -22,16 +22,20 @@ def stage_keyboard(
         builder.button(text="📆 Неделя", callback_data=QuickCB(action="week"))
         builder.adjust(3)
 
-    stage_list = list(stages) if stages else ["ВО", "ССО"]
+    stage_list = (
+        list(stages)
+        if stages
+        else ["ВО Дневное", "ВО Заочное", "ССО Дневное", "ССО Заочное"]
+    )
     for stage in stage_list:
         builder.button(
             text=stage,
             callback_data=MenuCB(level=1, stage=stage),
         )
     if saved_group:
-        builder.adjust(3, len(stage_list))
+        builder.adjust(3, 2, 2)
     else:
-        builder.adjust(len(stage_list))
+        builder.adjust(2, 2)
     return builder.as_markup()
 
 

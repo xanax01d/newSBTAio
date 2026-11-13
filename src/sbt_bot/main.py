@@ -35,8 +35,10 @@ async def run_bot(settings: Settings) -> None:
 
     pdf_source = BsacPdfScheduleSource(
         stage_urls={
-            "ВО": settings.bsac_vo_url,
-            "ССО": settings.bsac_sso_url,
+            "ВО Дневное": settings.bsac_vo_url,
+            "ВО Заочное": settings.bsac_vo_zo_url,
+            "ССО Дневное": settings.bsac_sso_url,
+            "ССО Заочное": settings.bsac_sso_zo_url,
         }
     )
     sync_service = ScheduleSyncService(
