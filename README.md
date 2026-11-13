@@ -1,6 +1,32 @@
-# BSAC SCHEDULE BOT
-RU:
-Бот-расписание Белорусской государственной академии связи, написанный при использовании библиотеки aiogram
+# BSAC Schedule Bot (v2)
 
-ENG: 
-Bot-Schedule of Belarussian state academy of communications,coded with using aiogram library
+Асинхронный Telegram-бот расписания Белорусской государственной академии связи (БГАС) на базе `aiogram 3`, PostgreSQL и Redis.
+
+## Что нового в v2
+
+- **Чистая модульная архитектура** (`src/sbt_bot/`) с разделением на конфиги, БД-слой, парсер, бота и утилиты.
+- **PostgreSQL + SQLAlchemy 2.0 (async) + Alembic** вместо синхронного SQLite с таблицей на каждую группу.
+- **Redis FSM** и хранение выбранной группы пользователя в БД.
+- **Быстрый доступ**: команды `/today`, `/tomorrow`, `/week` и быстрые кнопки на стартовом экране.
+- **Автоматический парсинг PDF с `bsac.by`** по расписанию (APScheduler) + ручной запуск `/sync` для админов.
+- **Исправленная капча в репортах**: состояние капчи привязано к Redis FSM пользователя (без гонок между пользователями).
+- **Docker Compose** для запуска бота, PostgreSQL и Redis одной командой.
+
+## Быстрый старт (Docker)
+
+1. Скопируйте `.env.example` в `.env` и заполните `BOT_TOKEN` (обязательно перевыпустите старый токен в `@BotFather`, если он был засвечен в истории репозитория):
+   ```bash
+   cp .env.example .env
+   ```
+2. Запустите стек:
+   ```bash
+   docker compose up -d --build
+   ```
+
+## Локальная разработка и тесты
+
+```bash
+pip install -e ".[dev]"
+pytest
+ruff check src tests
+```
